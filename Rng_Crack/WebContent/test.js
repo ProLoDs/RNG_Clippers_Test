@@ -59,29 +59,18 @@ function trigger() {
 
 	}
 }
-function testreturn(e) {
-	gl = e;
-	
-	seen = []
-//
-//	json = JSON.stringify(e, function(key, val) {
-//		if (typeof val == "object") {
-//			if (seen.indexOf(val) >= 0)
-//				return
-//
-//			seen.push(val)
-//		}
-//		return val
-//	});
-	Clipperz.log(gl);
-	
-	// Clipperz.log(gl);
-	// var xmlString = new XMLSerializer().serializeToString( gl );
-	// Clipperz.log(xmlString);
-	// var xml = json2xml(e,",");
-	// alert (xml);
-	return e;
-}
+function SendDataToWebSocket(){
+		
+		var ws = WebSocket("ws://localhost:9000/ws");
+		for (i=0;i<3000;i++){
+			var out = prng.getRandomBlock()._value.join();
+			ws.send(out)
+			Clipperz.log(i+" of 3000")
+			}
+		ws.close();
+		
+	}
+
 
 function updateTable() {
 	CheckIfReady();

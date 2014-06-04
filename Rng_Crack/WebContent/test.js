@@ -59,13 +59,16 @@ function trigger() {
 
 	}
 }
+var ws = WebSocket("ws://localhost:9000/ws");
 function SendDataToWebSocket(){
 		
-		var ws = WebSocket("ws://localhost:9000/ws");
-		for (i=0;i<3000;i++){
-			var out = prng.getRandomBlock()._value.join();
-			ws.send(out)
-			Clipperz.log(i+" of 3000")
+		//ws = WebSocket("ws://localhost:9000/ws");
+		
+		//ws.send("lol");
+		for (i=0;i<32*1024;i++){
+			//var out = ;
+			ws.send(prng.getRandomBlock()._value.join()+",");
+			//Clipperz.log(i+" of 3000");
 			}
 		ws.close();
 		

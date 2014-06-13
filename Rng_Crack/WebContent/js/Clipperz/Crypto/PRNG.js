@@ -500,9 +500,13 @@ Clipperz.Crypto.PRNG.Fortuna.prototype = MochiKit.Base.update(null, {
 		reseedCounter = this.reseedCounter();
 		
 		c = this.numberOfEntropyAccumulators();
+		for (i=0; i<c; i++) {
+			
+			Clipperz.log(this.accumulators()[i].stack()._value.join());
+			}
 		
 		reseedCounterMask = 0xffffffff >>> (32 - c);
-		
+		Clipperz.log(reseedCounterMask);
 		for (i=0; i<c; i++) {
 			if ((i == 0) || ((reseedCounter & (reseedCounterMask >>> (c - i))) == 0)) {
 				Clipperz.log("Stacks to reset and add:");

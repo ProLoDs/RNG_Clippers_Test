@@ -32,12 +32,6 @@ function checkReseedCounter() {
 	document.getElementById("reseedCounter").innerHTML = prng.reseedCounter();
 }
 
-// $('.trigger').click(function() {
-// var e = $.Event('mousemove');
-// e.pageX = parseInt($('.set-x').val());
-// e.pageY = parseInt($('.set-y').val());
-// target.trigger(e);
-// });
 
 var e = new MochiKit.Signal.Event();
 m=[];
@@ -47,14 +41,7 @@ e._mouse = m;
 var gl;
 function trigger() {
 	for ( var i = 0; i < 3000; i++) {
-		// var e = $.Event('mousemove');
-		//
-		// // set coordinates
-		// e.pageX = 0;
-		// e.pageY = 0;
-		// // trigger event - must trigger on document
-		// $(document).trigger(e);
-		//Clipperz.log(e);
+
 		signal(document, 'onmousemove', e);
 
 	}
@@ -63,12 +50,9 @@ var ws = WebSocket("ws://localhost:9000/ws");
 function SendDataToWebSocket(){
 		
 		//ws = WebSocket("ws://localhost:9000/ws");
-		
-		//ws.send("lol");
 		for (i=0;i<32*1024;i++){
-			//var out = ;
+
 			ws.send(prng.getRandomBlock()._value.join()+",");
-			//Clipperz.log(i+" of 3000");
 			}
 		ws.close();
 		
